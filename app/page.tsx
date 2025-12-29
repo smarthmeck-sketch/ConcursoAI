@@ -1,11 +1,10 @@
 'use client';
-
 import Link from 'next/link';
-import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const router = useRouter();
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       {/* Header/Navigation */}
@@ -16,12 +15,13 @@ export default function Home() {
             <h1 className="text-2xl font-bold text-blue-600">ConcursoAI</h1>
           </div>
           <div className="hidden md:flex gap-6 items-center">
-            <a href="#features" className="text-gray-700 hover:text-blue-600 transition">Recursos</a>
-            <a href="#pricing" className="text-gray-700 hover:text-blue-600 transition">Preços</a>
-            <a href="#about" className="text-gray-700 hover:text-blue-600 transition">Sobre</a>
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Entrar</button>
+            <a href="#features" className="text-gray-700 hover:text-blue-600">Recursos</a>
+            <a href="#pricing" className="text-gray-700 hover:text-blue-600">Preços</a>
+            <a href="#about" className="text-gray-700 hover:text-blue-600">Sobre</a>
+            <Link href="/login" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+              Entrar
+            </Link>
           </div>
-          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>☰</button>
         </nav>
       </header>
 
@@ -32,10 +32,10 @@ export default function Home() {
           Plataforma SaaS completa com técnicas de estudo científicas, mentor IA integrado e planejamento personalizado.
         </p>
         <div className="flex gap-4 justify-center">
-          <button className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition text-lg">
+          <Link href="/login" className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition text-lg">
             Começar Agora
-          </button>
-          <button className="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition text-lg">
+          </Link>
+          <button onClick={() => router.push('#features')} className="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition text-lg">
             Ver Demo
           </button>
         </div>
@@ -46,19 +46,16 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4">
           <h3 className="text-4xl font-bold text-center mb-12">✨ Recursos Principais</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Feature 1 */}
             <div className="p-6 border border-gray-200 rounded-lg hover:shadow-lg transition">
               <div className="text-5xl mb-4">🤖</div>
               <h4 className="text-xl font-bold mb-3">Mentor IA</h4>
               <p className="text-gray-600">Chat em tempo real com respostas instantâneas. Explicações personalizadas em múltiplos níveis de dificuldade.</p>
             </div>
-            {/* Feature 2 */}
             <div className="p-6 border border-gray-200 rounded-lg hover:shadow-lg transition">
               <div className="text-5xl mb-4">📊</div>
               <h4 className="text-xl font-bold mb-3">Técnicas Científicas</h4>
               <p className="text-gray-600">Pareto, Repetição Espaçada, Active Recall, Feynman, Interleaving e Pomodoro integrados.</p>
             </div>
-            {/* Feature 3 */}
             <div className="p-6 border border-gray-200 rounded-lg hover:shadow-lg transition">
               <div className="text-5xl mb-4">📈</div>
               <h4 className="text-xl font-bold mb-3">Dashboard Inteligente</h4>
@@ -96,9 +93,14 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-4 py-20 text-center">
         <h3 className="text-4xl font-bold mb-6">Pronto para Começar?</h3>
         <p className="text-lg text-gray-600 mb-8">Acesse a plataforma completa agora e comece sua jornada para aprovação.</p>
-        <button className="bg-blue-600 text-white px-12 py-4 rounded-lg font-bold text-lg hover:bg-blue-700 transition">
-          Acessar Plataforma Completa
-        </button>
+        <div className="flex gap-4 justify-center">
+          <Link href="/login" className="bg-blue-600 text-white px-12 py-4 rounded-lg font-bold text-lg hover:bg-blue-700 transition">
+            Acessar Plataforma Completa
+          </Link>
+          <Link href="/signup" className="border-2 border-blue-600 text-blue-600 px-12 py-4 rounded-lg font-bold text-lg hover:bg-blue-50">
+            Criar Conta
+          </Link>
+        </div>
       </section>
 
       {/* Footer */}
